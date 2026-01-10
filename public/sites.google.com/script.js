@@ -9,10 +9,15 @@ fetch("pi.txt")
 
 function initGame() {
   let index = 0;
+  let input_pi = String(PI_STR).slice(0, index);
   const status = document.getElementById("status");
 
-  // ページ全体でキー入力を監視
-  document.addEventListener("keyup", function (event) {
+  document.addEventListener("keydown", function (event) {
+    // 長押しによる連打は無視
+    if (event.repeat) {
+      return;
+    }
+
     const key = event.key;
 
     // 数字キー以外は無視
@@ -20,12 +25,12 @@ function initGame() {
       return;
     }
 
-    // 正解の1文字と比較
+    // 正解判定
     if (key === PI_STR[index]) {
       index++;
-      status.textContent = `現在${index}`;
+      status.textContent = `正解！ 現在 ${index} 桁目まで正解: ${input_pi}`;
     } else {
-      status.textContent = `結果${index}`;
+      status.textContent = `不正解。${index} 桁目まで正解でした。最初からやり直し: ${input_pi}`;
       index = 0;
     }
   });
