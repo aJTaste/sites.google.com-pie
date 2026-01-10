@@ -31,7 +31,7 @@ function initGame() {
       status.textContent = `現在 ${index} 桁目まで正解: ${input_pi}`;
     } else {
       const input_pi = String(PI_STR).slice(0, index);
-      status.textContent = `あなたの円周率: ${input_pi / 10 ** (index - 1)}`;
+      status.textContent = `あなたの円周率: ${String(input_pi / 10 ** (index - 1))}`;
       index = 0;
     }
   });
